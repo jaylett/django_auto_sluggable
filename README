@@ -58,4 +58,3 @@ class Paper(SluggableModel):
 Alternatively, you could change SluggableModel itself to make the field used to generate the slug configurable; that's left as an exercise for the reader ;-)
 
 James Aylett <http://tartarus.org/james/computers/django/>
-ß
