@@ -11,10 +11,10 @@ from django.db import models
 from django_auto_sluggable.models import SluggableModel
 
 class MyModel(SluggableModel):
-	name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 		
-	def __unicode__(self):
-		return self.name
+    def __unicode__(self):
+        return self.name
 ----------------------------------------------------------------------------
 
 When you create a new MyModel, its slug will be generated from the name field, unique across all instances.
@@ -27,15 +27,15 @@ from django.contrib.auth.models import User
 from django_auto_sluggable.models import SluggableModel
 
 class Article(SluggableModel):
-	name = models.CharField(max_length=255)
-	user = models.ForeignKey(User)
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(User)
 		
-	@classmethod
-	def slug_objects(cls):
-		return cls.objects.filter(user=self.user)
+    @classmethod
+    def slug_objects(cls):
+        return cls.objects.filter(user=self.user)
 		
-	def __unicode__(self):
-		return u"%s: %s" % (self.user, self.name,)
+    def __unicode__(self):
+        return u"%s: %s" % (self.user, self.name,)
 ----------------------------------------------------------------------------
 
 Finally, if you don't have a name field, you can do something like:
@@ -45,16 +45,17 @@ from django.db import models
 from django_auto_sluggable.models import SluggableModel
 
 class Paper(SluggableModel):
-	title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
 		
     @property
-	def name(self):
-		return self.title
+    def name(self):
+        return self.title
 		
-	def __unicode__(self):
-		return self.title
+    def __unicode__(self):
+        return self.title
 ----------------------------------------------------------------------------
 
 Alternatively, you could change SluggableModel itself to make the field used to generate the slug configurable; that's left as an exercise for the reader ;-)
 
 James Aylett <http://tartarus.org/james/computers/django/>
+ß
