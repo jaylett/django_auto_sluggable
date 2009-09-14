@@ -43,15 +43,14 @@ class SluggableModel(models.Model):
     class Meta:
         abstract = True
 
-    @classmethod
-    def slug_objects(cls):
+    def slug_objects(self):
         "Default to checking across all objects for conflicting slugs. Override this if slugs only have to be unique across a subset."
-        return cls.objects
+        return type(self).objects
     
     def generate_slug(self, force=False):
         "Auto-generate the slug as needed."
         if not self.slug:
-            self.slug = suggest_slug(type(self).slug_objects(), self.name)
+            self.slug = suggest_slug(self.slug_objects(), self.name)
 
     def save(self, *args, **kwargs):
         "On save, generate slug if needed."

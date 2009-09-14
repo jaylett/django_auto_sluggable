@@ -32,10 +32,9 @@ class Article(SluggableModel):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User)
 		
-    @classmethod
-    def slug_objects(cls):
-        return cls.objects.filter(user=self.user)
-		
+    def slug_objects(self):
+        return type(self).objects.filter(user=self.user)
+
     def __unicode__(self):
         return u"%s: %s" % (self.user, self.name,)
 ----------------------------------------------------------------------------
